@@ -142,6 +142,3 @@ def writeweeklyfile(symbol,days,filepath):
 
 
 
-#writedailyfile('SPY',5000,'/Users/matthewharrison/DOCUMENTS/MATLAB')
-#writeweeklyfile('SPY',5000,'/Users/matthewharrison/DOCUMENTS/MATLAB')
-

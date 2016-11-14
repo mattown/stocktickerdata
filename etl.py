@@ -1,4 +1,5 @@
 import TickerInfo
+import GetBars
 import sys, os
 
 
@@ -17,3 +18,5 @@ except:
 
 
 TickerInfo.get_quotes(ticker, target_dir)
+GetBars.writedailyfile(ticker,5000,target_dir)
+GetBars.writeweeklyfile(ticker,5000,target_dir)
