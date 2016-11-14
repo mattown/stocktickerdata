@@ -35,14 +35,13 @@ def getdayfromnow(i):
 def getintrabarsraw(symbol,min,start,end):
     url = 'http://localhost:5000/barData?symbol=%s&historyType=0&intradayMinutes=%s&beginTime=%s000000&endTime=%s000000' % (symbol,min,start,end)
     return urllib.request.urlopen(url).read().decode('utf-8').strip()
-#print (getdailybarsraw('SPY',15,'20160407','20160408'))
+
 
 
 def getbarsraw(symbol,mtype,start,end):
     url = 'http://localhost:5000/barData?symbol=%s&historyType=%d&beginTime=%s000000&endTime=%s000000' % (symbol,mtype,start,end)
     return urllib.request.urlopen(url).read().decode('utf-8').strip()
-#print (getbarsraw('SPY',1,'20160301','20160408'))
-#print (getbarsraw('SPY',2,'20160301','20160408'))
+
 
 def parserawbytes(rawdata, fieldarray, delimiter):
     output =[]
@@ -51,8 +50,6 @@ def parserawbytes(rawdata, fieldarray, delimiter):
     output.append(fieldarray)
     #output.reverse()
     return output
-#print(parserawbytes(getintrabarsraw('SPY',15,'20160407','20160408'),['time','open','high','low','close','volume'],','))
-
 
 #
 #  intraday bar retrieval
@@ -76,15 +73,14 @@ def getintradaybars(symbol,min,days):
 def getbarsraw(symbol,mtype,start,end):
     url = 'http://localhost:5000/barData?symbol=%s&historyType=%d&beginTime=%s000000&endTime=%s000000' % (symbol,mtype,start,end)
     return urllib.request.urlopen(url).read().decode('utf-8').strip()
-#print (getbarsraw('SPY',1,'20160301','20160408'))
-#print (getbarsraw('SPY',2,'20160301','20160408'))
+
 
 def getdailybars(symbol,days):
     start=getdayfromnow(days*-1)
     end =getdayfromnow(1)
     rdata =getbarsraw(symbol,1,start,end)
     return parserawbytes(rdata,['datetime','open','high','low','close','volume'],',')
-#print(getdailybars('SPY',20))
+
 
 #
 #  weekly bar retrieval
@@ -95,7 +91,6 @@ def getweeklybars(symbol,days):
     end =getdayfromnow(1)
     rdata =getbarsraw(symbol,2,start,end)
     return parserawbytes(rdata,['datetime','open','high','low','close','volume'],',')
-#print(getweeklybars('SPY',20))
 
 
 #
@@ -111,8 +106,7 @@ def printrawdata(rdata,delimiter):
         ))
     s = s.strip()
     return s
-#s= getweeklybars('SPY',20)
-#print(printrawdata(s,','))
+
 
 
 
@@ -146,12 +140,8 @@ def writeweeklyfile(symbol,days,filepath):
     f.write(d)
     f.close()
 
-#writeintrafile('SPY',15,1000,'/Users/matthewharrison/DOCUMENTS/MATLAB')
-#writeintrafile('SPY',30,1000,'/Users/matthewharrison/DOCUMENTS/MATLAB')
-#writeintrafile('SPY',60,1000,'/Users/matthewharrison/DOCUMENTS/MATLAB')
-#writeintrafile('SPY',120,1000,'/Users/matthewharrison/DOCUMENTS/MATLAB')
-#writeintrafile('SPY',180,1000,'/Users/matthewharrison/DOCUMENTS/MATLAB')
-#writeintrafile('SPY',240,1000,'/Users/matthewharrison/DOCUMENTS/MATLAB')
-writedailyfile('SPY',5000,'/Users/matthewharrison/DOCUMENTS/MATLAB')
-writeweeklyfile('SPY',5000,'/Users/matthewharrison/DOCUMENTS/MATLAB')
+
+
+#writedailyfile('SPY',5000,'/Users/matthewharrison/DOCUMENTS/MATLAB')
+#writeweeklyfile('SPY',5000,'/Users/matthewharrison/DOCUMENTS/MATLAB')
 
